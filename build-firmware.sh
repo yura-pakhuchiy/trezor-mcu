@@ -2,13 +2,13 @@
 set -e
 
 IMAGE=trezor-mcu-build
-TAG=${1:-master}
+TAG=${1:-zcoin}
 BINFILE=build/trezor-$TAG.bin
 ELFFILE=build/trezor-$TAG.elf
 
 docker build -t $IMAGE .
 docker run -t -v $(pwd)/build:/build:z $IMAGE /bin/sh -c "\
-	git clone https://github.com/trezor/trezor-mcu && \
+	git clone https://github.com/yura-pakhuchiy/trezor-mcu && \
 	cd trezor-mcu && \
 	git checkout $TAG && \
 	git submodule update --init && \
