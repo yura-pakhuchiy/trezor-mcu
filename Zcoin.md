@@ -6,6 +6,7 @@
 $ pip3 uninstall trezor # in case unpatched version 0.9.0 is already installed
 $ pip3 install https://github.com/yura-pakhuchiy/python-trezor/releases/download/0.9.0-zcoin/trezor-zcoin.tar.gz
 ```
+You might have to run `pip3` commands as root or prefix them with `sudo `.
 
 ## Installing patched firmware
 
@@ -20,6 +21,25 @@ $ pip3 install https://github.com/yura-pakhuchiy/python-trezor/releases/download
 ```
 $ trezorctl firmware_update -f trezor-zcoin.bin
 ```
+Go to https://wallet.trezor.io, initialize device and label it.
+
+## Electrum-XZC
+
+Download and install Electrum-XZC version with Trezor support
+```
+$ pip3 install https://github.com/yura-pakhuchiy/electrum-xzc/releases/download/3.0.5a-trezor/Electrum-XZC-3.0.5-trezor.tar.gz
+```
+You might have to run `pip3` command as root or prefix it with `sudo `.
+
+Make sure that you have labeled your Trezor (Electrum will not work with it otherwise). Now start Electrum-XZC:
+```
+$ electrum-xzc
+```
+Create new wallet. Select standard wallet, hardware device and legacy BIP44 seed (do not select segwit!). Enjoy!
+
+<img src="https://user-images.githubusercontent.com/4184761/36939826-91a588f4-1f6a-11e8-9a74-c62fe55bd0bf.png" width="600">
+
+Next 3 sections are about using Trezor from command line, you can skip them if you are not interested.
 
 ## Generating addresses
 
@@ -95,7 +115,7 @@ Signed Transaction:
 
 Take output after `Signed transaction:` and paste it to https://insight.zcoin.io/tx/send
 
-Use 4294967294 for sequence number (note last digit different from default) and 1 for transaction version (Zcoin core uses these values). Do not use other values unless you know exactly what are you doing.
+Use 1 for transaction version instead of default value (2).
 
 Specifying change address by BIP32 path does not work, just specify address for change output as for all other outputs.
 
